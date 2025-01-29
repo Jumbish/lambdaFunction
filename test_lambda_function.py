@@ -9,7 +9,7 @@ from your_module import get_image_metadata, get_all_metadata, lambda_handler
 
 class TestLambdaFunctions(unittest.TestCase):
 
-    @patch('your_module.table')
+    @patch('lambda_function.table')
     def test_get_image_metadata(self, mock_table):
         # Mock the response from DynamoDB
         mock_table.get_item.return_value = {'Item': {'ImageID': 'test-id', 'ArtistName': 'Artist'}}
