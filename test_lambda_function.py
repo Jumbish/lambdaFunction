@@ -30,7 +30,7 @@ class TestLambdaFunctions(unittest.TestCase):
         result = get_image_metadata('test-id')
         self.assertIsNone(result)
 
-    @patch('your_module.table')
+    @patch('lambda_function.table')
     def test_get_all_metadata(self, mock_table):
         # Mock the response from DynamoDB
         mock_table.scan.return_value = {'Items': [{'ImageID': 'test-id', 'ArtistName': 'Artist'}]}
@@ -46,8 +46,8 @@ class TestLambdaFunctions(unittest.TestCase):
         result = get_all_metadata()
         self.assertIsNone(result)
 
-    @patch('your_module.s3')
-    @patch('your_module.table')
+    @patch('lambda_function.s3')
+    @patch('lambda_function.table')
     def test_lambda_handler_s3_event(self, mock_table, mock_s3):
         # Mock the S3 get_object response
         mock_s3.get_object.return_value = {'ContentType': 'image/jpeg'}
@@ -75,7 +75,7 @@ class TestLambdaFunctions(unittest.TestCase):
         self.assertEqual(result['statusCode'], 500)
         self.assertIn('Error adding metadata', result['body'])
 
-    @patch('your_module.get_image_metadata')
+    @patch('lambda_function.get_image_metadata')
     def test_lambda_handler_api_gateway_event(self, mock_get_image_metadata):
         # Mock the API Gateway event
         event = {
