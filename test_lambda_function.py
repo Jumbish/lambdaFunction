@@ -5,7 +5,7 @@ import boto3
 from botocore.exceptions import ClientError
 
 # Import the functions from your module
-from your_module import get_image_metadata, get_all_metadata, lambda_handler
+from lambda_function import get_image_metadata, get_all_metadata, lambda_handler
 
 class TestLambdaFunctions(unittest.TestCase):
 
